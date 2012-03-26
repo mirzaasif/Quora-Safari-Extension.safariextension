@@ -88,7 +88,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Extension for Quora</string>
+	<string>Charm for Quora shows recommended contents and boards. You can post, search, view notifications.</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -101,6 +101,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://thirdeye.ibtgames.com/download/quora.safariextension</string>
 	<key>Website</key>
 	<string>http://thirdeye.ibtgames.com</string>
 </dict>
