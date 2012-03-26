@@ -102,8 +102,8 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://thirdeye.ibtgames.com/download/quora.safariextension</string>
+	<string>http://thirdeye.ibtgames.com/download/charm_for_quora.safariextension</string>
 	<key>Website</key>
-	<string>http://thirdeye.ibtgames.com</string>
+	<string>http://thirdeye.ibtgames.com/charm_for_quora</string>
 </dict>
 </plist>
