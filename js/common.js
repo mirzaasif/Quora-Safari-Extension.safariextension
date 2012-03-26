@@ -5,7 +5,14 @@ function sendMessage(message, response)
 
 function updateBadgeText(text)
 {
-	chrome.browserAction.setBadgeText({"text": text})
+	var views = safari.extension.toolbarItems;
+    for (var corey = 0; corey < views.length; corey++) 
+    {
+    	if(views[corey].identifier == "toolbar1")
+		{
+			views[corey].badge = text;	
+		}																	
+    }
 }
 
 function getPath(file)

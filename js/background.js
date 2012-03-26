@@ -251,6 +251,18 @@ function waitForMessage(msgEvent)
     	{
     		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("recommendation_result", resp);
     	});
+    }else if(messageName === "post")
+    {
+    	url = safari.application.activeBrowserWindow.activeTab.url;
+		postToQuora(url);
+    }else if(messageName === "block")
+    {
+    	settings = getSettings();
+    	settings.block_url = messageData + "\n" + settings.block_url;
+    	updateSettings(settings);
+    }else if(messageName === "openFullLink")
+    {
+    	openUrl(messageData);
     }
 }			
 function onLoad()

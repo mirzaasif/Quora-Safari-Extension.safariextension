@@ -11,8 +11,8 @@ function onLoad()
 
 	$(document).ready(function() {
 		
-		closeIcon = getPath("images/close.png");
-		blockIcon = getPath("images/block.png");
+		//closeIcon = getPath("images/close.png");
+		//blockIcon = getPath("images/block.png");
 		//$("body").append("<div class='charm_quora' id='charm_quora'><div class='title'>Recommended Boards on Quora</div><div id='result' class='result'></div><div style='text-align:center; padding-bottom:4px;'><img src='"+closeIcon+"' width='16' title='Hide' style='cursor:pointer;' id='charm_hide'/>&nbsp;&nbsp;<img src='"+blockIcon+"' width='16' title='Never show recommendations on this site.' style='cursor:pointer;' id='charm_block'/></div><div style='text-align:center; color:#666; font-size:10px; clear:both;'>Charm for Quora</div></div>");
 		$("body").append("<div class='charm_quora' id='charm_quora'><div class='charm_quora_title'>Recommended Boards on Quora</div><div id='charm_result' class='charm_result'></div><div style='text-align:center; padding-bottom:4px;'><label id='charm_post' class='charm_quora_link' style=' cursor:pointer;' title='Post this page to a board on Quora'>Post</label><span style='color:#CCC;'> • </span><label id='charm_hide' class='charm_quora_link_alt' style=' cursor:pointer;' title='Hide this recommendation'>Hide</label></div><div style='text-align:center; padding-bottom:4px; cursor:pointer; display:block;' class='charm_quora_link_alt' id='charm_block' title='Add the domain for this page into the recommendation block list'>Block for this site</div><div style='text-align:center; color:#666; font-size:10px; clear:both;'>Charm for Quora</div></div>");
 		left = (parseInt($(window).width())-150);
@@ -39,28 +39,6 @@ function onLoad()
 		safari.self.addEventListener("message", handleMessage, false);
 		
 		safari.self.tab.dispatchMessage("settings", "");
-		/*
-		sendMessage({"data":"get_settings"}, function(response)
-			{
-				settings = response.settings;
-				urlBlock = isURLBlocked(settings);
-				
-				if(!urlBlock)
-				{
-					message = {"data" : "recommendation", "title" : pageTitle};
-					sendMessage(message, function(response)
-						{
-							if(settings.setting1)
-							{
-								handleBoardRecommendationResponse(response);
-								getBoardRecommendationAdvaced(pageTitle);	
-							}
-						}
-					);
-				}
-			}
-		);	
-		*/
 	});
 }
 
@@ -113,10 +91,10 @@ function handleBoardRecommendationResponse(response)
 		
 			if(url.toString().toLowerCase() != documentUrl.toString().toLowerCase())
 			{
-				div = "<a class='charm_result_item' href='"+url+"' target='_blank' title='Open "+name+" in a separate tab'><div class='charm_result_item' id='result_item_"+count+"' data-name='"+name+"'>"+name+"</div></a>";
+				div = "<a id='result_item_"+count+"' data-name='"+name+"' data-url='"+url+"' class='charm_result_item' href='#' title='Open "+name+" in a separate tab'><div class='charm_result_item'>"+name+"</div></a>";
 				//div = "<div class='result_item' id='result_item_"+count+"' data-name='"+name+"'>"+name+"</div>";
 				$(".charm_quora #charm_result").append(div);
-				//$("#result_item_"+count).click(function(event){postQuora(event);});
+				$("#result_item_"+count).click(function(event){boardView(event);});
 				count++;	
 			}		
 		}
@@ -127,16 +105,16 @@ function handleBoardRecommendationResponse(response)
 		$(".charm_quora").css("display", "block");
 	}
 }
-/*
-function postQuora(event)
-{
-	name = $(event.currentTarget).attr("data-name");
-	sendMessage({"data":"post", "name": name}, function(){});	
-}
-*/
+
 function postQuora()
 {
-	sendMessage({"data":"post"}, function(){});	
+	safari.self.tab.dispatchMessage("post", "");
+}
+
+function boardView(event)
+{
+	url = $(event.currentTarget).attr("data-url");
+	safari.self.tab.dispatchMessage("openFullLink", url);
 }
 
 function getBoardRecommendationAdvaced(title)
@@ -182,16 +160,12 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 */
 function blockSite()
 {
-	domain = location.hostname;
-	sendMessage({"data":"get_settings"}, function(response)
-		{
-			settings = response.settings;
-			settings.block_url = domain + "\n" + settings.block_url;
-			sendMessage({"data":"save_settings", "settings" : settings}, function(){});
-			$(".charm_quora #result").append(domain+" has been blocked. You can undo this action from settings.");
-			setTimeout("hide()", 5000);		
-		} 
-	);	
+	domain = window.location.hostname;
+	safari.self.tab.dispatchMessage("block", domain);
+	div = "<div>"+domain+" has been blocked. You can undo this action from settings.</div>";
+	$(".charm_quora #charm_result").append(div);
+	setTimeout("hide()", 5000);	
+	
 }
 
 function hide()
