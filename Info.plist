@@ -18,6 +18,17 @@
 	<string>1</string>
 	<key>Chrome</key>
 	<dict>
+		<key>Context Menu Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>post-quora</string>
+				<key>Identifier</key>
+				<string>post-quora</string>
+				<key>Title</key>
+				<string>Post to Quora</string>
+			</dict>
+		</array>
 		<key>Database Quota</key>
 		<real>10485760</real>
 		<key>Global Page</key>

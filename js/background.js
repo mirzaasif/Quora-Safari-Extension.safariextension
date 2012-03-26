@@ -264,11 +264,21 @@ function waitForMessage(msgEvent)
     {
     	openUrl(messageData);
     }
+}
+function performCommand(event) 
+{
+	if (event.command === "post-quora") 
+    {
+		url = safari.application.activeBrowserWindow.activeTab.url;
+		postToQuora(url);
+	}
+
 }			
 function onLoad()
 {
 	setInterval(live, 30000);
 	safari.application.addEventListener("message", waitForMessage, false);
+	safari.application.addEventListener("command", performCommand, false);
 	/*
 	chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) 

@@ -247,6 +247,8 @@ function handleRecommendationData(response)
 		//$("#recommendations").slideDown("fast");
 		$("#recommendations").css("display", "block");	
 	}	
+	
+	updateHeight();
 }
 function showRecommendationLink()
 {
@@ -336,6 +338,11 @@ function onLoad()
 	}
 	
 	$("#block_url").val(settings.block_url);
+	
+	$("#update_status").css("display", "none");
+	
+	updateHeight(160);
+	
 }
 
 function handleArrows(code)
