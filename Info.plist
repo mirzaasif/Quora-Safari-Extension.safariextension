@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Mirza Asif</string>
+	<key>Builder Version</key>
+	<string>7534.54.16</string>
+	<key>CFBundleDisplayName</key>
+	<string>Charm for Quora</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.ibtgames.quora-safari-extension</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<real>10485760</real>
+		<key>Global Page</key>
+		<string>background.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>popup.html</string>
+				<key>Height</key>
+				<real>150</real>
+				<key>Identifier</key>
+				<string>popup</string>
+				<key>Width</key>
+				<real>400</real>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string></string>
+				<key>Identifier</key>
+				<string>toolbar1</string>
+				<key>Image</key>
+				<string>images/quora_16.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>Charm</string>
+				<key>Palette Label</key>
+				<string></string>
+				<key>Popover</key>
+				<string>popup</string>
+				<key>Tool Tip</key>
+				<string>Charm for Quora</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>js/lib/jquery-1.7.1.min.js</string>
+				<string>js/common.js</string>
+				<string>js/lib/stopword.js</string>
+				<string>js/content.js</string>
+			</array>
+		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>css/content.css</string>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>Extension for Quora</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>http://thirdeye.ibtgames.com</string>
+</dict>
+</plist>
